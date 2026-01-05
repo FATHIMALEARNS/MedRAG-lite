@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+env/
+
+# Model weights (DO NOT UPLOAD)
+models/
+*.pt
+*.pth
+*.bin
+
+# Temporary files
+tmp_*
+
+
+# Environment variables
+.env
+
+# OS junk
+Thumbs.db
+.DS_Store
