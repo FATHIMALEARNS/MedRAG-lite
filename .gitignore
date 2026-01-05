@@ -1,4 +1,4 @@
-# Python
+# Python cache
 __pycache__/
 *.pyc
 
@@ -6,19 +6,21 @@ __pycache__/
 venv/
 env/
 
-# Model weights (DO NOT UPLOAD)
+# Model weights / indexes
 models/
 *.pt
 *.pth
 *.bin
-
-# Temporary files
-tmp_*
-
+*.index
 
 # Environment variables
 .env
 
-# OS junk
-Thumbs.db
+# Images / temp files
+*.jpg
+*.png
+tmp_*
+
+# OS / editor
 .DS_Store
+Thumbs.db
