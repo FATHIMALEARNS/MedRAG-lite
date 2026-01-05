@@ -47,10 +47,6 @@ MedRAG-lite/
 ├── utils/ # Helper utilities
 ├── requirements.txt
 └── README.md
-
-yaml
-Copy code
-
 ---
 
 ## How to Run
@@ -80,3 +76,4 @@ If from terminal:
 git add README.md
 git commit -m "Fix README formatting"
 git push
+
