@@ -9,3 +9,4 @@ openai             # only if you use GPT-4o-mini (cloud)
 numpy
 tqdm
 opencv-python
+python-dotenv
