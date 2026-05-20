@@ -1,0 +1,4 @@
+A chest X-ray is a commonly used imaging test to evaluate the lungs, heart, and chest wall.
+Abnormal chest X-ray findings may include opacities, consolidations, nodules, or fluid accumulation.
+Such findings can be associated with infections, inflammatory conditions, pulmonary edema, or chronic lung disease.
+Chest X-rays alone are not diagnostic and must be interpreted with clinical symptoms and laboratory findings.

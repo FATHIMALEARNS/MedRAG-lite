@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Diagnostic Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/processing.css') }}">
+</head>
+<body>
+
+<div class="overlay">
+    <div class="card">
+
+        <div class="icon-circle">
+            🧠
+        </div>
+
+        <h1>AI Diagnostic Analysis in Progress</h1>
+        <p class="subtitle">
+            Processing medical imaging with Deep Learning models
+        </p>
+
+        <div class="progress-section">
+            <div class="progress-header">
+                <span>Analyzing Chest X-Ray…</span>
+                <span class="percent" id="percent">0%</span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+
+            <p class="hint">
+                Please wait while our AI processes the imagery.
+            </p>
+        </div>
+
+        <div class="steps">
+
+            <div class="step completed">
+                <div class="circle">✔</div>
+                <div>
+                    <strong>Captioning image</strong>
+                    <p>Identifying anatomical structures and orientations</p>
+                </div>
+            </div>
+
+            <div class="step active">
+                <div class="circle">↻</div>
+                <div>
+                    <strong>Retrieving medical context</strong>
+                    <p>Cross-referencing clinical knowledge base</p>
+                </div>
+            </div>
+
+            <div class="step pending" id="final-step">
+                <div class="circle">⏳</div>
+                <div>
+                    <strong>Generating explanation</strong>
+                    <p>Synthesizing findings into patient-friendly text</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            <div>
+                <strong>Estimated Time Remaining</strong>
+                <p>~15 seconds. Results require professional review.</p>
+            </div>
+
+            <button class="cancel-btn" onclick="window.location.href='/dashboard'">
+                Cancel Analysis
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let progress = 0;
+    const bar = document.getElementById("progress-fill");
+    const percentText = document.getElementById("percent");
+    const finalStep = document.getElementById("final-step");
+
+    const interval = setInterval(() => {
+        progress += 5;
+        bar.style.width = progress + "%";
+        percentText.innerText = progress + "%";
+
+        if (progress >= 100) {
+            clearInterval(interval);
+            finalStep.classList.remove("pending");
+            finalStep.classList.add("completed");
+            finalStep.querySelector(".circle").innerText = "✔";
+
+            setTimeout(() => {
+                window.location.href = "/result";
+            }, 1000);
+        }
+    }, 500);
+</script>
+
+</body>
+</html>

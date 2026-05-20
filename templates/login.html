@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedRAG | Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+</head>
+<body>
+
+<!-- Top Bar -->
+<header class="top-bar">
+    <div class="logo">
+        <span class="logo-icon">✚</span>
+        <span class="logo-text">MedRAG</span>
+    </div>
+
+    <div class="dpdp-text">
+        DPDP Act (India) Aligned Data Protection
+    </div>
+</header>
+
+<!-- Login Section -->
+<main class="login-wrapper">
+    <div class="login-card">
+
+        <div class="icon-circle">🫁</div>
+
+        <h1>Welcome back</h1>
+        <p class="subtitle">Access your AI diagnostic portal</p>
+
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="name@hospital.com" required>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                <label for="password">Password</label>
+                <a href="/forgot-password" style="font-size: 13px; color: #4f46e5; text-decoration: none;">Forgot password?</a>
+            </div>
+            <input type="password" id="password" name="password" required placeholder="••••••••">
+
+            <div class="remember">
+                <input type="checkbox">
+                <span>Keep me logged in on this workstation</span>
+            </div>
+
+            <button type="submit">Sign In →</button>
+        </form>
+
+        <div class="divider"></div>
+
+        <p class="register">
+            New to MedRAG?
+            <a href="/register">Request an account</a>
+        </p>
+    </div>
+
+    <!-- Security Text -->
+    <div class="security">
+        🔒 Secure Healthcare Data Handling (AES-256 Standard)
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+    <a href="#">Contact Support</a>
+    <span>© 2024 MedRAG AI Systems</span>
+</footer>
+
+</body>
+</html>

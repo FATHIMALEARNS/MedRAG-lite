@@ -1,0 +1,17 @@
+venv
+venv/
+env/
+.env
+ml/data/
+ml/raw_images/
+.git/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.log
+uploads/
+static/uploads/
+out.json
+test_out.txt

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Account – MedRAG</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+<body>
+
+<header class="top-bar">
+  <div class="logo">✚ MedRAG</div>
+  <div style="color:#0077b6;font-weight:600;">
+    DPDP Act (India) Aligned Data Protection
+  </div>
+</header>
+
+<div class="auth-container">
+  <div class="auth-card">
+
+    <h1>Create Account</h1>
+    <p>Request access to MedRAG</p>
+
+    {% if error %}
+      <div class="error-box">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST">
+
+      <div class="input-group">
+        <label>Full Name</label>
+        <input type="text" name="name" required>
+      </div>
+
+      <div class="input-group">
+        <label>Email Address</label>
+        <input type="email" name="email" required>
+      </div>
+
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" name="password" required>
+      </div>
+
+      <div class="input-group">
+        <label>Confirm Password</label>
+        <input type="password" name="confirm_password" required>
+      </div>
+
+      <button class="btn-primary" type="submit">Register</button>
+    </form>
+
+    <div class="link">
+      Already have an account?
+      <a href="/login">Login</a>
+    </div>
+
+    <p style="margin-top:20px;font-size:12px;color:#777;">
+      <strong>Medical Disclaimer:</strong> This system does not provide a medical diagnosis.
+    </p>
+
+  </div>
+</div>
+
+</body>
+</html>

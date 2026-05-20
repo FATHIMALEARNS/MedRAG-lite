@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedRAG | Analysis Report</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_new.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/result.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        .page-header { display: flex; justify-content: space-between; align-items: center; }
+        .back-btn { padding: 8px 16px; background: #f1f5f9; color: #475569; border-radius: 6px; text-decoration: none; font-weight: 500; }
+    </style>
+</head>
+<body>
+
+<div class="layout">
+    <aside class="sidebar">
+        <div class="logo"><span class="icon">🩺</span><div><h2>MedRAG</h2><p>AI Healthcare</p></div></div>
+        <nav class="menu">
+            <a href="/dashboard">📊 Dashboard</a>
+            <a href="/history" class="active">🕒 Upload History</a>
+        </nav>
+        <!-- Logout removed from sidebar -->
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div class="search">🔍 <input type="text" placeholder="Search patient ID or case notes..."></div>
+            <div class="profile" style="position: relative; cursor: pointer;" onclick="document.getElementById('profileDropdown').style.display = document.getElementById('profileDropdown').style.display === 'block' ? 'none' : 'block'">
+                🔔 <span class="name">{{ session.get('user_name', 'Patient') }}</span> <span class="avatar">👤</span>
+                <div id="profileDropdown" style="display: none; position: absolute; top: 100%; right: 0; background: white; border: 1px solid #eee; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 10px; min-width: 150px; z-index: 100; text-align: left;">
+                    <a href="/profile" style="display: block; padding: 8px; color: #333; text-decoration: none; border-bottom: 1px solid #f0f0f0;">👤 User Details</a>
+                    <a href="/logout" style="display: block; padding: 8px; color: #dc2626; text-decoration: none;">🚪 Logout</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="page-header">
+            <div>
+                <h1>Chest X-ray Analysis Report</h1>
+                <p>Archived record from {{ record.timestamp }}</p>
+            </div>
+            <div>
+                <a href="/export_pdf/{{ record.id }}" target="_blank" class="action-btn" style="padding: 10px 16px; margin-right: 15px; text-decoration: none;">📥 Download PDF</a>
+                <a href="/history" class="back-btn">⬅ Back to History</a>
+            </div>
+        </section>
+
+        <div class="result-container">
+            <!-- Left Column: Image -->
+            <div class="image-column">
+                <div class="image-wrapper">
+                    <img id="uploadedImage" src="{{ record.image_path }}" alt="Chest X-ray">
+                </div>
+                
+                <div class="prediction-box">
+                    <div class="pred-row">
+                        <span class="pred-label">MODEL PREDICTION</span>
+                        <span class="pred-value" id="cnnPrediction">{{ record.cnn_label }}</span>
+                        <span class="status-badge {{ record.cnn_label|lower if record.cnn_label else 'uncertain' }}" id="statusBadge">{{ record.cnn_label }}</span>
+                    </div>
+                    <div class="pred-row">
+                        <span class="pred-label">CONFIDENCE LEVEL</span>
+                        <span class="pred-value" id="cnnConfidence">{{ record.cnn_confidence }}</span>
+                    </div>
+                    <div class="pred-row">
+                        <span class="pred-label">PROBABILITY</span>
+                        <span class="pred-value" id="cnnProbability">{{ record.cnn_probability }}</span>
+                    </div>
+                </div>
+
+                {% if record.cnn_label|lower == 'uncertain' %}
+                <div class="warning-box" id="uncertaintyWarning">
+                    ⚠️ The model is uncertain about this prediction. Please rely on the visual LLM analysis and clinical review.
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Right Column: Results -->
+            <div class="results-column">
+                <div id="resultContent" class="result-content" style="display: block;">
+                    <div class="report-header">
+                        <h2>✨ AI Clinical & Visual Findings</h2>
+                        <span class="report-badge">Archived Report</span>
+                    </div>
+
+                    <div class="context-box">
+                        <p class="context-title">RADIOLOGICAL CONTEXT</p>
+                        <p class="context-text">The AI vision model has examined the image. Below are the structured findings combining local CNN predictions with deep visual analysis.</p>
+                        <p class="query-text"><strong>Query asked:</strong> <em>{{ record.user_query }}</em></p>
+                    </div>
+
+                    <div class="markdown-body" id="llmResponseContainer"></div>
+                    <div style="display:none;" id="rawLlmReport">{{ record.llm_report }}</div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                const rawReport = document.getElementById("rawLlmReport").innerText;
+                document.getElementById("llmResponseContainer").innerHTML = marked.parse(rawReport);
+            });
+        </script>
+    </main>
+</div>
+</body>
+</html>

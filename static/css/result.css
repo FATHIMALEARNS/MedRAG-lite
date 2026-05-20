@@ -1,0 +1,218 @@
+* {
+    box-sizing: border-box;
+    font-family: "Segoe UI", Inter, Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    background: #f4f7fa;
+    color: #0c1721;
+}
+
+/* Topbar */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 32px;
+    background: #ffffff;
+    border-bottom: 1px solid #e2edf5;
+}
+
+.logo {
+    display: flex;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.nav-links a {
+    margin: 0 12px;
+    text-decoration: none;
+    color: #334e68;
+    font-weight: 500;
+}
+
+.profile {
+    display: flex;
+    gap: 14px;
+    font-size: 20px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    padding: 16px 32px;
+    font-size: 14px;
+}
+
+.breadcrumb .link {
+    color: #0077b6;
+}
+
+/* Header */
+.page-header {
+    padding: 0 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.primary-btn {
+    background: #0077b6;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Layout */
+.content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    padding: 24px 32px;
+}
+
+/* X-ray panel */
+.xray-panel {
+    background: #0b132b;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.xray-panel img {
+    width: 100%;
+    display: block;
+}
+
+.meta {
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px;
+}
+
+.meta small {
+    color: #6b879b;
+    font-size: 11px;
+}
+
+.badge {
+    background: #e0f2ff;
+    color: #0077b6;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+}
+
+/* Analysis */
+.analysis-panel {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.badge-green {
+    background: #e6f9ed;
+    color: #1e824c;
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+.key-box {
+    background: #eef7fd;
+    border-left: 4px solid #0077b6;
+    padding: 14px;
+    margin: 16px 0;
+}
+
+.key-box small {
+    color: #0077b6;
+    font-weight: 700;
+}
+
+.findings h4 {
+    font-size: 12px;
+    color: #6b879b;
+    margin-bottom: 10px;
+}
+
+.finding {
+    display: flex;
+    gap: 12px;
+    padding: 10px;
+    border: 1px solid #e6eef5;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.finding.ok span {
+    color: #2ecc71;
+}
+
+.finding.info span {
+    color: #3498db;
+}
+
+/* Confidence */
+.confidence {
+    margin-top: 16px;
+}
+
+.conf-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+}
+
+.conf-bar {
+    height: 8px;
+    background: #dbe7f0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.conf-fill {
+    width: 98.4%;
+    height: 100%;
+    background: #0077b6;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.secondary-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #dbe7f0;
+    background: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Disclaimer */
+.disclaimer {
+    display: flex;
+    gap: 16px;
+    background: #fff4d6;
+    padding: 20px 32px;
+    border-top: 1px solid #f1d28b;
+}
+
+.warn {
+    font-size: 26px;
+}

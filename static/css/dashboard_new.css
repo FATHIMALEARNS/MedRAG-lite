@@ -1,0 +1,209 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: #f6f9fc;
+    color: #1f2937;
+    height: 100vh;
+    /* Removed overflow: hidden so scrolling is handled by layout wrappers */
+    margin: 0;
+}
+
+.layout {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    background: #ffffff;
+    padding: 20px;
+    border-right: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.logo h2 {
+    font-size: 18px;
+}
+
+.logo p {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.menu a {
+    display: block;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    text-decoration: none;
+    color: #374151;
+    font-size: 14px;
+}
+
+.menu a.active,
+.menu a:hover {
+    background: #0077b6;
+    color: #fff;
+}
+
+.logout {
+    margin-top: auto;
+    text-decoration: none;
+    color: #dc2626;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+/* Main */
+.main {
+    flex: 1;
+    padding: 24px 32px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto; /* Allow main content to scroll */
+}
+
+/* Topbar */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.search {
+    background: #fff;
+    padding: 8px 14px;
+    border-radius: 10px;
+    width: 320px;
+}
+
+.search input {
+    border: none;
+    outline: none;
+    width: 90%;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+/* Header */
+.page-header {
+    margin-bottom: 12px;
+}
+
+.page-header h1 {
+    font-size: 24px;
+}
+
+.page-header p {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* Upload */
+.upload-card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.upload-box {
+    border: 2px dashed #c7d2fe;
+    padding: 28px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.upload-box h3 {
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+.analyze-btn {
+    display: inline-block;
+    background: #0077b6;
+    color: #fff;
+    padding: 12px 28px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.secure {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #6b7280;
+}
+
+/* Features */
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.feature {
+    background: #fff;
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 13px;
+}
+
+.feature h4 {
+    font-size: 15px;
+    margin-bottom: 4px;
+}
+
+/* Recent */
+.recent {
+    margin-top: 16px;
+    flex-grow: 1; /* fills remaining space */
+}
+
+.recent-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.empty {
+    background: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 13px;
+    color: #6b7280;
+}
+
+/* Footer */
+.footer {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #6b7280;
+    display: flex;
+    justify-content: space-between;
+}

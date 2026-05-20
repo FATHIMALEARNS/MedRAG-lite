@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedRAG | History</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_new.css') }}">
+    <style>
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .history-table th, .history-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .history-table th {
+            background-color: #f8fafc;
+            font-weight: 600;
+            color: #475569;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .history-table td {
+            font-size: 15px;
+            color: #334155;
+            vertical-align: middle;
+        }
+        .history-table tr:hover {
+            background-color: #f8fafc;
+        }
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .badge.normal { background: #dcfce7; color: #166534; }
+        .badge.abnormal { background: #fee2e2; color: #991b1b; }
+        .badge.uncertain { background: #fef9c3; color: #854d0e; }
+        
+        .action-btn {
+            padding: 8px 16px;
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .action-btn:hover { background: #0284c7; }
+        
+        .thumbnail { width: 50px; height: 50px; border-radius: 6px; object-fit: cover; }
+    </style>
+</head>
+<body>
+
+<div class="layout">
+    <aside class="sidebar">
+        <div class="logo">
+            <span class="icon">🩺</span>
+            <div>
+                <h2>MedRAG</h2>
+                <p>AI Healthcare</p>
+            </div>
+        </div>
+        <nav class="menu">
+            <a href="/dashboard">📊 Dashboard</a>
+            <a href="/history" class="active">🕒 Upload History</a>
+        </nav>
+        <!-- Logout removed from sidebar -->
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div class="search">🔍 <input type="text" placeholder="Search patient ID or case notes..."></div>
+            <div class="profile" style="position: relative; cursor: pointer;" onclick="document.getElementById('profileDropdown').style.display = document.getElementById('profileDropdown').style.display === 'block' ? 'none' : 'block'">
+                🔔 
+                <span class="name">{{ session.get('user_name', 'Doctor') }}</span> 
+                <span class="avatar">👤</span>
+                <div id="profileDropdown" style="display: none; position: absolute; top: 100%; right: 0; background: white; border: 1px solid #eee; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 10px; min-width: 150px; z-index: 100; text-align: left;">
+                    <a href="/profile" style="display: block; padding: 8px; color: #333; text-decoration: none; border-bottom: 1px solid #f0f0f0;">👤 User Details</a>
+                    <a href="/logout" style="display: block; padding: 8px; color: #dc2626; text-decoration: none;">🚪 Logout</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="page-header">
+            <h1>Patient Database & History</h1>
+            <p>Review previously analyzed chest X-rays and their AI-assisted reports.</p>
+        </section>
+
+        {% if history %}
+        <div style="overflow-y: auto; max-height: calc(100vh - 180px); padding-right: 5px;">
+        <table class="history-table" style="margin-top: 10px;">
+            <thead style="position: sticky; top: 0; background-color: #f8fafc; z-index: 10; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                <tr>
+                    <th>Scan</th>
+                    <th>Date & Time</th>
+                    <th>Patient Query (Symptoms)</th>
+                    <th>CNN Prediction</th>
+                    <th>Confidence</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in history %}
+                <tr>
+                    <td><img src="{{ record.image_path }}" class="thumbnail" alt="X-ray"></td>
+                    <td>{{ record.timestamp }}</td>
+                    <td style="max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                        {{ record.user_query }}
+                    </td>
+                    <td>
+                        <span class="badge {{ record.cnn_label|lower if record.cnn_label else 'uncertain' }}">
+                            {{ record.cnn_label or "Unknown" }}
+                        </span>
+                    </td>
+                    <td>{{ record.cnn_confidence or "N/A" }}</td>
+                    <td>
+                        <a href="/record/{{ record.id }}" class="action-btn">View Report</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        {% else %}
+        <div style="padding: 40px; text-align: center; background: white; border-radius: 12px; margin-top:20px;">
+            <p style="color: #64748b; font-size: 16px;">No analysis records found. Upload an image from the dashboard to get started.</p>
+        </div>
+        {% endif %}
+
+    </main>
+</div>
+</body>
+</html>

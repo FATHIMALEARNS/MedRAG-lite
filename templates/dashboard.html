@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedRAG | Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_new.css') }}">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <span class="icon">🩺</span>
+            <div>
+                <h2>MedRAG</h2>
+                <p>AI Healthcare</p>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="/dashboard" class="active">📊 Dashboard</a>
+            <a href="/history">🕒 Upload History</a>
+        </nav>
+
+        <!-- Logout removed from sidebar -->
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+
+        <!-- Topbar -->
+        <header class="topbar">
+            <div class="search">
+                🔍
+                <input type="text" placeholder="Search patient ID or case notes...">
+            </div>
+
+            <div class="profile" style="position: relative; cursor: pointer;" onclick="document.getElementById('profileDropdown').style.display = document.getElementById('profileDropdown').style.display === 'block' ? 'none' : 'block'">
+                🔔
+                <span class="name">{{ user_name }}</span>
+                <span class="avatar">👤</span>
+                <div id="profileDropdown" style="display: none; position: absolute; top: 100%; right: 0; background: white; border: 1px solid #eee; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 10px; min-width: 150px; z-index: 100; text-align: left;">
+                    <a href="/profile" style="display: block; padding: 8px; color: #333; text-decoration: none; border-bottom: 1px solid #f0f0f0;">👤 User Details</a>
+                    <a href="/logout" style="display: block; padding: 8px; color: #dc2626; text-decoration: none;">🚪 Logout</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Header -->
+        <section class="page-header">
+            <h1>Chest X-ray Analysis</h1>
+            <p>
+                AI-assisted screening support for radiological review.
+                <br>
+                <small style="color:#6b7280;">
+                    Research & educational use only. Not a diagnostic tool.
+                </small>
+            </p>
+        </section>
+
+        <!-- Upload -->
+        <form class="upload-card" method="POST" enctype="multipart/form-data">
+
+            <div class="upload-box">
+                ☁️
+                <h3>Click to upload or drag and drop</h3>
+                <p>Supported formats: JPG, PNG (DICOM coming soon)</p>
+                <div style="color: #e11d48; font-weight: 600; font-size: 13px; margin: 12px auto; background: #fff1f2; padding: 8px 16px; border-radius: 6px; display: block; width: fit-content; text-align: center;">⚠️ Please upload Chest X-ray images ONLY.</div>
+                <input type="file" name="image" accept=".jpg,.jpeg,.png" required style="margin-top: 5px; cursor: pointer;">
+            </div>
+
+            <div class="query-box" style="margin-top: 15px;">
+                <label for="patient_symptoms" style="display: block; font-weight: 500; font-size: 14px; margin-bottom: 8px;">Patient Symptoms & Medical History (Optional)</label>
+                <textarea name="patient_symptoms" id="patient_symptoms" placeholder="e.g., Patient is a 45yo male presenting with a 3-day history of dry cough and mild fever." rows="2" style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; box-sizing: border-box; resize: vertical;"></textarea>
+            </div>
+
+            <div class="query-box" style="margin-top: 15px;">
+                <label for="user_query" style="display: block; font-weight: 500; font-size: 14px; margin-bottom: 8px;">Specific Clinical Question (Optional)</label>
+                <input type="text" name="user_query" id="user_query" placeholder="e.g., Are there any signs of pleural effusion?" style="width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; box-sizing: border-box;">
+            </div>
+
+            <button type="submit" class="analyze-btn">
+                📊 Analyze Image
+            </button>
+
+            <p class="secure">
+                🔒 DPDP Act (India) aligned & Secure healthcare data handling
+            </p>
+        </form>
+
+        <!-- Features -->
+        <section class="features">
+            <div class="feature">
+                ⚡
+                <h4>Efficient Processing</h4>
+                <p>Optimized pipeline for rapid inference during testing.</p>
+            </div>
+
+            <div class="feature">
+                🧠
+                <h4>AI-Assisted Insights</h4>
+                <p>Supports radiological interpretation, not diagnosis.</p>
+            </div>
+
+            <div class="feature">
+                📄
+                <h4>Explainable Output</h4>
+                <p>Structured summaries with clear disclaimers.</p>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+</body>
+</html>

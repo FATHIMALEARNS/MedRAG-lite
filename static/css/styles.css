@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f4f8fb;
+  color: #0f172a;
+}
+
+/* Layout */
+.page {
+  min-height: 100vh;
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background: #ffffff;
+  border-right: 1px solid #e2e8f0;
+  padding: 24px;
+}
+
+.sidebar h2 {
+  color: #007ab8;
+  margin-bottom: 32px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 10px;
+  margin-bottom: 8px;
+  color: #334155;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.sidebar a:hover {
+  background: #e6f3fa;
+  color: #007ab8;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+
+}
+
+/* Card */
+.card {
+  max-width: 520px;
+  background: white;
+  padding: 32px;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* Headings */
+h1 {
+  margin-top: 0;
+  font-size: 26px;
+}
+
+p {
+  color: #475569;
+  font-size: 14px;
+}
+
+/* Upload box */
+.upload-box {
+  border: 2px dashed #cbd5e1;
+  border-radius: 14px;
+  padding: 40px;
+  text-align: center;
+  margin-top: 24px;
+}
+
+.upload-box input {
+  margin-top: 12px;
+}
+
+/* Buttons */
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  background: #007ab8;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #00639a;
+}
+/* Custom file upload */
+.file-label input {
+  display: none;
+}
+
+.file-box {
+  border: 2px dashed #cbd5e1;
+  border-radius: 14px;
+  padding: 40px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #f8fbff;
+}
+
+.file-box:hover {
+  border-color: #007ab8;
+  background: #eef7ff;
+}
+
+.file-icon {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+
+.file-box span {
+  font-size: 12px;
+  color: #64748b;
+}

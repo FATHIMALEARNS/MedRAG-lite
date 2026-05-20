@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedRAG Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        textarea, input {
+            width: 100%;
+            margin-top: 8px;
+            padding: 8px;
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 30px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+
+<h2>MedRAG – Chest X-ray Analysis</h2>
+
+<label>X-ray Image Path</label>
+<input type="text" id="imagePath"
+       value="ml/data/val/abnormal/7b7d7bf3-0684-465d-9a74-f51887685387.png">
+
+<label>Question</label>
+<textarea id="question" rows="3">
+What does this chest X-ray result mean?
+</textarea>
+
+<button onclick="analyze()">Analyze</button>
+
+<div class="result" id="result" style="display:none;"></div>
+
+<script>
+async function analyze() {
+    const imagePath = document.getElementById("imagePath").value;
+    const question = document.getElementById("question").value;
+
+    const response = await fetch("/analyze", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            image_path: imagePath,
+            user_query: question
+        })
+    });
+
+    const data = await response.json();
+
+    const resultDiv = document.getElementById("result");
+    resultDiv.style.display = "block";
+
+    resultDiv.innerHTML = `
+        <h3>Prediction</h3>
+        <p><b>Label:</b> ${data.prediction.label}</p>
+        <p><b>Confidence:</b> ${data.prediction.confidence}</p>
+        <p><b>Probability:</b> ${data.prediction.probability}</p>
+
+        <h3>Explanation</h3>
+        <p>${data.response.replaceAll("\\n", "<br>")}</p>
+    `;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedRAG | User Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard_new.css') }}">
+</head>
+<body>
+
+<div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">
+            <span class="icon">🩺</span>
+            <div>
+                <h2>MedRAG</h2>
+                <p>AI Healthcare</p>
+            </div>
+        </div>
+
+        <nav class="menu">
+            <a href="/dashboard">📊 Dashboard</a>
+            <a href="/history">🕒 Upload History</a>
+        </nav>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+        <!-- Topbar -->
+        <header class="topbar">
+            <div class="search" style="visibility:hidden;">
+                🔍
+                <input type="text" placeholder="Search patient ID or case notes...">
+            </div>
+
+            <div class="profile" style="position: relative; cursor: pointer;" onclick="document.getElementById('profileDropdown').style.display = document.getElementById('profileDropdown').style.display === 'block' ? 'none' : 'block'">
+                🔔
+                <span class="name">{{ user_name }}</span>
+                <span class="avatar">👩‍⚕️</span>
+                <div id="profileDropdown" style="display: none; position: absolute; top: 100%; right: 0; background: white; border: 1px solid #eee; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 10px; min-width: 150px; z-index: 100; text-align: left;">
+                    <a href="/profile" style="display: block; padding: 8px; color: #333; text-decoration: none; border-bottom: 1px solid #f0f0f0;">👤 User Details</a>
+                    <a href="/logout" style="display: block; padding: 8px; color: #dc2626; text-decoration: none;">🚪 Logout</a>
+                </div>
+            </div>
+        </header>
+
+        <section class="page-header">
+            <h1>User Details</h1>
+            <p>Manage your MedRAG account and profile information.</p>
+        </section>
+
+        <!-- Profile Card -->
+        <div style="background: white; padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0; max-width: 600px; margin-top: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);">
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                <span style="font-size: 48px; margin-right: 20px; background: #f1f5f9; border-radius: 50%; width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;">👤</span>
+                <div>
+                    <h2 style="margin: 0; color: #0f172a;">{{ user_name }}</h2>
+                    <p style="margin: 5px 0 0 0; color: #64748b;">Patient Account</p>
+                </div>
+            </div>
+            
+            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+            
+            <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 15px;">
+                <p style="margin: 0; font-weight: 500; color: #475569;">Role:</p>
+                <p style="margin: 0; color: #0f172a;">Patient</p>
+                
+                <p style="margin: 0; font-weight: 500; color: #475569;">Account Type:</p>
+                <p style="margin: 0; color: #0f172a;">Personal Health Record</p>
+
+                <p style="margin: 0; font-weight: 500; color: #475569;">Account Status:</p>
+                <p style="margin: 0; color: #166534; font-weight: 600; display: inline-flex; align-items: center;"><span style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%; margin-right: 6px;"></span> Active</p>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid #e2e8f0; margin: 20px 0;">
+            <p style="color: #94a3b8; font-size: 13px; margin: 0;">Further profile customization parameters (Password change, 2FA, Notification preferences) will be unlocked in the next software update.</p>
+        </div>
+
+    </main>
+</div>
+
+</body>
+</html>

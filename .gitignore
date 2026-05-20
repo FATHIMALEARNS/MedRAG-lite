@@ -1,0 +1,30 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+env/
+
+# Model weights / indexes
+models/
+*.pt
+*.pth
+*.bin
+*.index
+
+# Environment variables
+.env
+
+# Images / temp files
+*.jpg
+*.png
+tmp_*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+
+# Huge ML Data (Do not push to github!)
+ml/data/
+ml/raw_images/

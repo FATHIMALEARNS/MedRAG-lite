@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MedRAG</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+
+<header class="top-bar">
+    <div class="logo">MedRAG</div>
+    <div class="env-text">
+        DPDP Act (India) Aligned Data Protection
+    </div>
+</header>
+
+<div class="layout">
+    <aside class="sidebar">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/history">Upload History</a>
+        <a href="/logout">Logout</a>
+    </aside>
+
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+</div>
+
+<footer class="footer">
+    <strong>Medical Disclaimer:</strong>
+    This is not a diagnostic tool. Consult a doctor.
+</footer>
+
+</body>
+</html>
